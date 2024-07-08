@@ -171,18 +171,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Highlight active navbar link based on current page
     function highlightActiveNavLink() {
         // Select all nav links
-        const navItems = document.querySelectorAll('.nav-item.nav-link');
-        const currentPath = window.location.pathname.toLowerCase();
-        navItems.forEach(item => {
-            const href = item.getAttribute('href').toLowerCase();
-    
-            // If the currentPath is '/', we explicitly match it with index.html
-            if ((currentPath === '/' && href === 'index.html') || currentPath.includes(href)) {
-                item.classList.add('active');
-            } else {
-                item.classList.remove('active');
-            }
-        });
+        const nav = document.querySelectorAll('.nav-item.nav-link');
+        const pathname = location.pathname.toLowerCase();
+
+    for (let i = 0; i < nav.length; i++) {
+        const navItemText = nav[i].innerHTML.toLowerCase();
+        
+        if (navItemText.includes("home") && (pathname === "/" || pathname.includes("index"))) {
+            nav[i].classList.add("active");
+        } else if (navItemText.includes("about") && pathname.includes("about")) {
+            nav[i].classList.add("active");
+        } else if (navItemText.includes("services") && pathname.includes("service")) {
+            nav[i].classList.add("active");
+        } else if (navItemText.includes("rooms") && pathname.includes("room")) {
+            nav[i].classList.add("active");
+        } else if (navItemText.includes("booking") && pathname.includes("booking")) {
+            nav[i].classList.add("active");
+        } else if (navItemText.includes("contact") && pathname.includes("contact")) {
+            nav[i].classList.add("active");
+        } else {
+            nav[i].classList.remove("active");
+        }
+    }
     }
     
 
