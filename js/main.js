@@ -172,16 +172,19 @@ document.addEventListener('DOMContentLoaded', async function () {
     function highlightActiveNavLink() {
         // Select all nav links
         const navItems = document.querySelectorAll('.nav-item.nav-link');
-        const currentPath = window.location.pathname;
+        const currentPath = window.location.pathname.toLowerCase();
         navItems.forEach(item => {
-            const href = item.getAttribute('href');
-            if (currentPath.includes(href)) {
+            const href = item.getAttribute('href').toLowerCase();
+    
+            // If the currentPath is '/', we explicitly match it with index.html
+            if ((currentPath === '/' && href === 'index.html') || currentPath.includes(href)) {
                 item.classList.add('active');
             } else {
                 item.classList.remove('active');
             }
         });
     }
+    
 
     highlightActiveNavLink();
 });
